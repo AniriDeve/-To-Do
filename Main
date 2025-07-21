@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        TaskManager manager = new TaskManager();
+
+        while (true) {
+            System.out.println("\n1. Добавить задачу");
+            System.out.println("2. Пометить задачу выполненной");
+            System.out.println("3. Удалить задачу");
+            System.out.println("4. Показать все задачи");
+            System.out.println("5. Выйти");
+            System.out.print("Выберите действие: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // очистка
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Введите описание задачи: ");
+                    String desc = scanner.nextLine();
+                    manager.addTask(desc);
+                    System.out.println("Задача добавлена.");
+                    break;
+                case 2:
+                    System.out.print("Введите номер задачи для завершения: ");
+                    int completeIndex = scanner.nextInt();
+                    if (manager.completeTask(completeIndex)) {
+                        System.out.println("Задача помечена как выполненная.");
+                    } else {
+                        System.out.println("Неверный номер.");
+                    }
+                    break;
+                case 3:
+                    System.out.print("Введите номер задачи для удаления: ");
+                    int deleteIndex = scanner.nextInt();
+                    if (manager.deleteTask(deleteIndex)) {
+                        System.out.println("Задача удалена.");
+                    } else {
+                        System.out.println("Неверный номер.");
+                    }
+                    break;
+                case 4:
+                    manager.listTasks();
+                    break;
+                case 5:
+                    System.out.println("Выход.");
+                    return;
+                default:
+                    System.out.println("Неверный ввод.");
+            }
+        }
+    }
+}
+
+
+​​​​​​​
